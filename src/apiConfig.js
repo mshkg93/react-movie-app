@@ -6,6 +6,8 @@ const LANGUAGE = 'en-US';
 
 const SEARCH_BASE_URL = `${API_URL}/search/movie?api_key=${API_KEY}&language=${LANGUAGE}&query=`;
 
+const MOVIE_DETAILS_URL = `${API_URL}/movie/`;
+
 const POPULAR_BASE_URL = `${API_URL}/movie/popular?api_key=${API_KEY}&language=${LANGUAGE}&page=`;
 
 //URL for the movie details
@@ -20,6 +22,7 @@ export {
   API_KEY,
   LANGUAGE,
   SEARCH_BASE_URL,
+  MOVIE_DETAILS_URL,
   POPULAR_BASE_URL,
   IMAGE_BASE_URL,
   BACKDROP_SIZE,

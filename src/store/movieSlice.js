@@ -1,10 +1,11 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from 'axios';
-import {SEARCH_BASE_URL} from '../apiConfig';
+import {SEARCH_BASE_URL, MOVIE_DETAILS_URL} from '../apiConfig';
 
 const initialState = {
   popular: [],
   nowPlaying: [],
+  details: [],
   upcoming: [],
   error: null,
   isLoading: true,
@@ -25,6 +26,14 @@ export const fetchSearch = createAsyncThunk(
   (search) => {
     return axios(`${SEARCH_BASE_URL}${search}
     `).then((response) => response.data.results);
+  }
+);
+export const fetchDetails = createAsyncThunk(
+  'details/fetchDetails',
+  (id) => {
+    return axios(
+      `${MOVIE_DETAILS_URL}${id}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US`
+    ).then((response) => console.log(response.data));
   }
 );
 export const movieSlice = createSlice({
@@ -77,6 +86,17 @@ export const movieSlice = createSlice({
       state.isLoading = false;
       state.error = action.error.message;
     });
+    builder.addCase(fetchDetails.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(fetchDetails.fulfilled, (state, action) => {
+      state.details = action.payload;
+      state.isLoading = false;
+    });
+    builder.addCase(fetchDetails.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
+    });
   },
 });
 
@@ -90,5 +110,4 @@ export const {
   setSearchQuery,
 } = movieSlice.actions;
 
-export const showPopular = (state) => state.movie.popular;
 export default movieSlice.reducer;

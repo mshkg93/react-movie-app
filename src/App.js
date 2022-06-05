@@ -6,13 +6,7 @@ import {
   Route,
   useParams,
 } from 'react-router-dom';
-import {
-  Header,
-  Jumbotron,
-  Error,
-  Popular,
-  SearchResults,
-} from './components';
+import {Header, Error, Details, SearchResults} from './components';
 import {Main} from './containers';
 
 import './App.css';
@@ -52,11 +46,7 @@ function App() {
               )
             }
           />
-          {/* <div>
-          <h1 className='text-3xl font-bold'>Error: {error}</h1>
-        </div> : 
-        <SearchResults results={results} />} */}
-          {/* }/> */}
+          <Route path='/movie/:id' element={<Details />} />
         </Routes>
       </div>
     </BrowserRouter>
