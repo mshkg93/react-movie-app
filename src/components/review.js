@@ -65,7 +65,7 @@ const Review = ({id, author_details, content, author}) => {
               component='h2'>
               {
                 <img
-                  src={`${author_details.avatar_path.slice(1)}`}
+                  src={`${author_details?.avatar_path.slice(1)}`}
                   alt={`${author.username}'s avatar`}
                   className='rounded-full'
                 />
