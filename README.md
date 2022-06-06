@@ -9,3 +9,7 @@ Created with create-react-app template.
 - React Router
 - MUI, TailwindCSS
 - Axios
+
+## Live version
+
+https://mshkg93.github.io/react-movie-app/
