@@ -7,3 +7,4 @@ export {default as SearchInput} from './searchInput';
 export {default as MovieCard} from './movieCard';
 export {default as SearchResults} from './searchResults';
 export {default as Details} from './details';
+export {default as Reviews} from './reviews';

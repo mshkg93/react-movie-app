@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import React from 'react';
+import {useSelector} from 'react-redux';
 import Loading from '../static/media/loading.svg';
 
 import {IMAGE_BASE_URL, BACKDROP_SIZE} from '../apiConfig';
@@ -9,7 +9,7 @@ const Jumbotron = () => {
   const {isLoading, error} = useSelector((state) => state.movie);
 
   return (
-    <div className='flex flex-col items-center bg-white h-screen w-full h-full'>
+    <div className='flex flex-col items-center bg-white  w-full h-full'>
       {isLoading ? (
         <img
           src={Loading}

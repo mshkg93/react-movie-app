@@ -1,50 +1,43 @@
 import React, {useState, useRef} from 'react';
-import {useEffect} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {Link, useNavigate} from 'react-router-dom';
-import Arrow from '../static/media/arrow_right.svg';
+import {useDispatch} from 'react-redux';
+import {useNavigate} from 'react-router-dom';
 
+import Arrow from '../static/media/arrow_right.svg';
 import {fetchSearch, setSearchQuery} from '../store/movieSlice';
 
 const SearchInput = () => {
   const [search, setSearch] = useState('');
   const inputRef = useRef();
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
-  const {searchResults, searchQuery} = useSelector(
-    (state) => state.movie
-  );
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (search === '') return;
     dispatch(setSearchQuery(search));
     dispatch(fetchSearch(search));
     setSearch('');
     navigate('/search');
   };
-  useEffect(() => {
-    console.log('Search results: ', searchResults);
-    console.log('Search Query: ', searchQuery);
-  }, [searchResults, searchQuery]);
 
   return (
-    <div className='w-full h-16 flex bg-gradient-to-t from-primary to-black justify-center items-center '>
-      <form onSubmit={handleSubmit} className='self-center '>
+    <div className='w-full h-24 flex  bg-gradient-to-t from-primary to-black items-center justify-center'>
+      <form onSubmit={handleSubmit} className='self-center flex'>
         <input
           type='text'
           value={search}
           ref={inputRef}
           placeholder='Search for a movie'
-          className='h-10 w-96 rounded-md px-3'
+          className='h-10 w-96 rounded-md px-3 bg-gray-200 focus:outline-none focus:bg-gray-300
+          z-10
+          '
           onChange={(event) => setSearch(event.target.value)}
         />
-        <button className='w-40 h-10 bg-slate-300 text-center items-center rounded-md px-3'>
-          {/* Submit{' '} */}
+        <button className='w-20 h-10 bg-slate-400 items-center rounded-md -translate-x-2'>
           <img
             src={Arrow}
             alt='arrow'
-            className='w-10 h-10 text-slate-300'
+            className='w-10 h-8 text-slate-300 inline-block'
           />
         </button>
       </form>

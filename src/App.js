@@ -1,11 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  useParams,
-} from 'react-router-dom';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import {Header, Error, Details, SearchResults} from './components';
 import {Main} from './containers';
 
@@ -29,7 +24,7 @@ function App() {
       <div className='App container-xl mx-auto'>
         <Header />
         <Routes>
-          <Route path='/' element={<Main />} />
+          <Route path='*' element={<Main />} />
           <Route
             path='/search'
             element={
@@ -46,7 +41,22 @@ function App() {
               )
             }
           />
-          <Route path='/movie/:id' element={<Details />} />
+          <Route
+            path='/movie/:id'
+            element={
+              isLoading ? (
+                <img
+                  src={Loading}
+                  alt='loading-spinner'
+                  className='animate-spin w-24 h-24'
+                />
+              ) : error ? (
+                <Error />
+              ) : (
+                <Details />
+              )
+            }
+          />
         </Routes>
       </div>
     </BrowserRouter>

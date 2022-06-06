@@ -1,5 +1,5 @@
-import React, {useEffect} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import React from 'react';
+import {useSelector} from 'react-redux';
 import MovieCard from './movieCard';
 const Popular = () => {
   const popular = useSelector((state) => state.movie.popular);
