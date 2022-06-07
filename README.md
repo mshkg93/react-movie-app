@@ -10,6 +10,11 @@ Created with create-react-app template.
 - MUI, TailwindCSS
 - Axios
 
+## TO-DO
+
+- Finish unfinished components, as well as RWD
+-
+
 ## Live version
 
 https://mshkg93.github.io/react-movie-app/
